@@ -18,7 +18,7 @@ export function Home() {
       company: "Cowlar Inc.",
       location: "Islamabad, PK (YC-W17)",
       role: "Automation Engineer",
-      period: "Sep 2024 – Present",
+      period: "Sep 2024 – June 2025",
       description: [
         "Leading industrial automation projects for North American clients.",
         "Developing robust retail solutions and managing project lifecycles.",
