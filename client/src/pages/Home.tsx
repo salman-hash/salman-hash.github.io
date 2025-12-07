@@ -20,7 +20,7 @@ export function Home() {
       role: "Automation Engineer",
       period: "Sep 2024 – June 2025",
       description: [
-        "Leading industrial automation projects for North American clients.",
+        "Key role in industrial automation projects for North American clients.",
         "Developing robust retail solutions and managing project lifecycles.",
         "Coordinating with clients to identify competitive edges and future enhancements."
       ],
