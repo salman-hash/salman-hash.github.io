@@ -13,13 +13,6 @@ export function CoCurricular() {
         "1st FYP Position in Department & Rector's Gold Medal",
         "Relevant Coursework: Robotics, Control Systems, Embedded Systems, AI"
       ]
-    },
-    {
-      school: "Fazaia Degree College",
-      degree: "HSSC in Pre-Engineering",
-      grade: "Marks: 94.45%",
-      period: "Mar 2019 – Aug 2021",
-      details: []
     }
   ];
 
