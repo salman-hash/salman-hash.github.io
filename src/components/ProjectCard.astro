@@ -8,9 +8,11 @@ interface Props {
   project: CollectionEntry<'projects'>;
   /** Eager-load the cover (use for above-the-fold cards). */
   eager?: boolean;
+  /** Title heading level — h2 when cards sit directly under the page h1. */
+  headingLevel?: 'h2' | 'h3';
 }
 
-const { project, eager = false } = Astro.props;
+const { project, eager = false, headingLevel: Heading = 'h3' } = Astro.props;
 const { title, summary, tags, cover, coverAlt, date, org } = project.data;
 ---
 
@@ -29,11 +31,11 @@ const { title, summary, tags, cover, coverAlt, date, org } = project.data;
     <p class="label">
       <time datetime={date.toISOString()}>{formatMonth(date)}</time>{org && <span> · {org}</span>}
     </p>
-    <h3 class="text-lg font-semibold leading-snug">
+    <Heading class="text-lg font-semibold leading-snug">
       <a href={`/projects/${project.id}`} class="after:absolute after:inset-0">
         {title}
       </a>
-    </h3>
+    </Heading>
     <p class="text-sm leading-relaxed text-muted">{summary}</p>
     <ul class="mt-auto flex flex-wrap gap-1.5 pt-1" aria-label="Topics">
       {tags.map((t) => <li><TopicTag topic={t} /></li>)}

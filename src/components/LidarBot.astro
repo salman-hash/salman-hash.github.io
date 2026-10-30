@@ -16,7 +16,8 @@
     mouse cursor.
   </figcaption>
   <p class="pointer-events-none absolute bottom-2 left-3 font-mono text-[0.65rem] text-muted" aria-hidden="true">
-    move your cursor into its path
+    <span class="pointer-coarse:hidden">move your cursor into its path</span>
+    <span class="hidden pointer-coarse:inline">tap to drop an obstacle</span>
   </p>
 </figure>
 
@@ -54,7 +55,7 @@
     const readColors = () => {
       const s = getComputedStyle(document.documentElement);
       const v = (n: string, fb: string) => s.getPropertyValue(n).trim() || fb;
-      colors = { accent: v('--accent', colors.accent), fg: v('--fg', colors.fg), muted: v('--muted', colors.muted), line: v('--line', colors.line) };
+      colors = { accent: v('--accent-ink', colors.accent), fg: v('--fg', colors.fg), muted: v('--muted', colors.muted), line: v('--line', colors.line) };
     };
 
     // Seeded RNG so the layout is stable between resizes of the same size.
@@ -266,6 +267,9 @@
       if (!running) draw(lastScan, lastNow);
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     canvas.parentElement!.addEventListener('pointermove', pointer, { passive: true });
-    canvas.parentElement!.addEventListener('pointerleave', () => (cursor = null));
+    canvas.parentElement!.addEventListener('pointerdown', pointer, { passive: true });
+    canvas.parentElement!.addEventListener('pointerleave', (e) => {
+      if (e.pointerType === 'mouse') cursor = null;
+    });
   }
 </script>

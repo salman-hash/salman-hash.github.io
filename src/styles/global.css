@@ -154,18 +154,22 @@
     margin-top: 1.8em;
     font-weight: 600;
   }
-  .prose-mc ul {
+  .prose-mc ul,
+  ul.prose-mc {
     list-style: none;
     padding-left: 0;
   }
-  .prose-mc ul > li {
+  .prose-mc ul > li,
+  ul.prose-mc > li {
     position: relative;
     padding-left: 1.4em;
   }
-  .prose-mc ul > li + li {
+  .prose-mc ul > li + li,
+  ul.prose-mc > li + li {
     margin-top: 0.5em;
   }
-  .prose-mc ul > li::before {
+  .prose-mc ul > li::before,
+  ul.prose-mc > li::before {
     content: '›';
     position: absolute;
     left: 0.2em;

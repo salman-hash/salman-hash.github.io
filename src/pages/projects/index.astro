@@ -33,7 +33,7 @@ const topics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCo
     </div>
 
     <ul id="project-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((p, i) => <li data-tags={p.data.tags.join(' ')}><ProjectCard project={p} eager={i < 3} /></li>)}
+      {projects.map((p, i) => <li data-tags={p.data.tags.join(' ')}><ProjectCard project={p} eager={i < 3} headingLevel="h2" /></li>)}
     </ul>
   </div>
 </BaseLayout>

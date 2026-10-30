@@ -12,7 +12,7 @@ export async function getPublications() {
 }
 
 export const formatMonth = (d: Date) =>
-  d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 
 /** "/about.html" → "/about", "/index.html" → "/" (build.format is 'file'). */
 export const cleanPath = (pathname: string) => pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '') || '/';
