@@ -72,7 +72,11 @@ Markdown body. Use `## Headings` and normal bullet lists.
 
 3. Run `npm run build`. Schema errors (missing alt text, summary over 200 chars, etc.) fail the build with a clear message.
 
-The topic filter on `/projects` is generated automatically from all tags.
+The topic filter on `/projects` is generated automatically from tags that two or more projects share. Reuse existing tag names (exact spelling) so projects group together.
+
+## Profile photo
+
+Put a square-ish photo at `src/assets/profile.jpg` (`.png`/`.webp` also work, at least 600×600). It appears on the About page, optimised to WebP automatically. If there's no file, the page just leaves it out.
 
 ## Add a publication
 

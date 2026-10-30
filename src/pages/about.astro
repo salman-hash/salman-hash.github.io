@@ -1,7 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { awards, education, experience, languages, leadership, site, skills } from '../data/site';
+
+// Optional profile photo: drop src/assets/profile.(jpg|jpeg|png|webp) in and it appears here.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
 ---
 
 <BaseLayout
@@ -28,9 +34,21 @@ import { awards, education, experience, languages, leadership, site, skills } fr
         </p>
       </div>
 
-      <aside class="panel h-fit space-y-4 p-5" aria-label="Download CV">
+      <aside class="panel h-fit space-y-4 p-5" aria-label="Profile and CV">
+        {
+          photo && (
+            <Image
+              src={photo}
+              alt={`Portrait of ${site.name}`}
+              widths={[288, 576]}
+              sizes="(min-width: 1024px) 248px, 100vw"
+              loading="eager"
+              class="aspect-square w-full rounded-lg object-cover"
+            />
+          )
+        }
         <h2 class="font-semibold">Curriculum vitae</h2>
-        <p class="text-sm text-muted">One-page summary of my education, experience and projects (PDF).</p>
+        <p class="text-sm text-muted">A summary of my education, experience and projects (PDF).</p>
         <a href={site.cv} class="btn btn-primary w-full justify-center" download="Salman_Sadiq_CV.pdf">
           Download CV (PDF)
         </a>
