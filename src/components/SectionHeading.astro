@@ -1,0 +1,17 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  id?: string;
+  level?: 'h1' | 'h2';
+}
+const { kicker, title, id, level: Tag = 'h2' } = Astro.props;
+---
+
+<div class="mb-6">
+  <p class="label"><span aria-hidden="true">// </span>{kicker}</p>
+  <Tag id={id} class:list={['mt-1 font-semibold tracking-tight', Tag === 'h1' ? 'text-3xl sm:text-4xl' : 'text-2xl']}>
+    {title}
+  </Tag>
+  <slot />
+</div>

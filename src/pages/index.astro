@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LidarBot from '../components/LidarBot.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getProjects } from '../lib/content';
+import { experience, site } from '../data/site';
+
+const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="grid items-center gap-10 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:pt-20" aria-labelledby="hero-title">
+    <div>
+      <p class="label"><span aria-hidden="true">~/ $ </span>whoami</p>
+      <h1 id="hero-title" class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{site.name}</h1>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">{site.tagline}</p>
+      <p class="mt-4 max-w-xl text-base leading-relaxed text-muted">
+        M.Sc. Autonomous Systems student at <span class="text-fg">H-BRS</span>. I've shipped embedded firmware,
+        industrial automation, ROS2 controllers and vision-language-model assistive systems.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/projects" class="btn btn-primary">view projects <span aria-hidden="true">→</span></a>
+        <a href={site.cv} class="btn" download>download cv <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+    <LidarBot />
+  </section>
+
+  <section class="py-12" aria-labelledby="featured-title">
+    <SectionHeading kicker="featured" title="Selected projects" id="featured-title" />
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((p) => <li><ProjectCard project={p} /></li>)}
+    </ul>
+    <p class="mt-6 font-mono text-sm">
+      <a href="/projects" class="link">all projects <span aria-hidden="true">→</span></a>
+    </p>
+  </section>
+
+  <section class="py-12" aria-labelledby="exp-title">
+    <SectionHeading kicker="log" title="Experience" id="exp-title" />
+    <ol class="relative space-y-6 border-l border-line pl-6">
+      {
+        experience.map((e) => (
+          <li class="relative">
+            <span class="absolute top-2 -left-[1.72rem] size-2.5 rounded-full border-2 border-accent bg-bg" aria-hidden="true" />
+            <p class="label">{e.period}</p>
+            <h3 class="mt-1 font-semibold">
+              {e.role} <span class="font-normal text-muted">· {e.org}</span>
+            </h3>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-6 font-mono text-sm">
+      <a href="/about" class="link">full background <span aria-hidden="true">→</span></a>
+    </p>
+  </section>
+</BaseLayout>

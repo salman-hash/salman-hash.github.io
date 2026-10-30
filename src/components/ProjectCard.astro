@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import TopicTag from './TopicTag.astro';
+import { formatMonth } from '../lib/content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  /** Eager-load the cover (use for above-the-fold cards). */
+  eager?: boolean;
+}
+
+const { project, eager = false } = Astro.props;
+const { title, summary, tags, cover, coverAlt, date, org } = project.data;
+---
+
+<article
+  class="group panel relative flex h-full flex-col overflow-hidden transition-colors hover:border-accent focus-within:border-accent"
+>
+  <Image
+    src={cover}
+    alt={coverAlt}
+    widths={[400, 640, 800]}
+    sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+    loading={eager ? 'eager' : 'lazy'}
+    class="aspect-[16/10] w-full border-b border-line object-cover"
+  />
+  <div class="flex flex-1 flex-col gap-3 p-4">
+    <p class="label">
+      <time datetime={date.toISOString()}>{formatMonth(date)}</time>{org && <span> · {org}</span>}
+    </p>
+    <h3 class="text-lg font-semibold leading-snug">
+      <a href={`/projects/${project.id}`} class="after:absolute after:inset-0">
+        {title}
+      </a>
+    </h3>
+    <p class="text-sm leading-relaxed text-muted">{summary}</p>
+    <ul class="mt-auto flex flex-wrap gap-1.5 pt-1" aria-label="Topics">
+      {tags.map((t) => <li><TopicTag topic={t} /></li>)}
+    </ul>
+  </div>
+</article>

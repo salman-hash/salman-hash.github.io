@@ -1,0 +1,80 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getPublications } from '../lib/content';
+
+const pubs = await Promise.all(
+  (await getPublications()).map(async (p) => ({ ...p, Content: (await render(p)).Content })),
+);
+const statusLabel: Record<string, string> = {
+  published: 'published',
+  accepted: 'accepted',
+  'in-progress': 'in progress',
+  filed: 'patent filed',
+  granted: 'patent granted',
+};
+const interests = ['Assistive technology', 'Vision-language models', 'Robot perception', 'Sensor integration', 'Autonomous navigation'];
+---
+
+<BaseLayout
+  title="Research"
+  description="Publications and patents by Salman Sadiq on multi-agent vision-language systems for assistive navigation."
+>
+  <div class="pt-12">
+    <SectionHeading kicker="research" title="Research & patents" level="h1">
+      <p class="mt-3 max-w-2xl text-muted">
+        I work on perception systems that help people and machines understand the scene around them, with a focus on
+        assistive navigation using vision-language models.
+      </p>
+    </SectionHeading>
+
+    <ul class="mb-10 flex flex-wrap gap-2" aria-label="Research interests">
+      {interests.map((i) => <li class="rounded border border-line px-2 py-1 font-mono text-xs text-muted">{i}</li>)}
+    </ul>
+
+    <ol class="space-y-5">
+      {
+        pubs.map(({ data, Content }) => (
+          <li class="panel p-5 sm:p-6">
+            <p class="label flex flex-wrap gap-x-3">
+              <span>{data.kind}</span>
+              <span class="text-accent-ink">[{statusLabel[data.status]}]</span>
+              <span>{data.date.getUTCFullYear()}</span>
+            </p>
+            <h2 class="mt-2 text-xl font-semibold leading-snug">{data.title}</h2>
+            <p class="mt-2 text-sm text-muted">
+              {data.authors.map((a, i) => (
+                <>
+                  {a === 'S Sadiq' ? <strong class="font-semibold text-fg">{a}</strong> : a}
+                  {i < data.authors.length - 1 && ', '}
+                </>
+              ))}
+            </p>
+            <p class="mt-1 text-sm italic text-muted">{data.venue}</p>
+            <div class="prose-mc mt-3 text-sm">
+              <Content />
+            </div>
+            <p class="mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm">
+              {data.doi && (
+                <a class="link" href={`https://doi.org/${data.doi}`} rel="noopener">
+                  doi:{data.doi} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {data.url && (
+                <a class="link" href={data.url} rel="noopener">
+                  link <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {data.project && (
+                <a class="link" href={`/projects/${data.project.id}`}>
+                  related project <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</BaseLayout>

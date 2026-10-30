@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Not found" description="This page could not be found.">
+  <div class="max-w-2xl pt-20">
+    <p class="label">[ERROR] /nav: goal unreachable</p>
+    <h1 class="mt-3 text-4xl font-bold tracking-tight">404: no path to this page</h1>
+    <p class="mt-4 text-lg text-muted">The planner couldn't find a route here. The page may have moved or never existed.</p>
+    <a href="/" class="btn btn-primary mt-8">return to base <span aria-hidden="true">→</span></a>
+  </div>
+</BaseLayout>
