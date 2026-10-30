@@ -5,8 +5,8 @@ role: Designer & developer
 date: 2023-06-01 # TODO: confirm date
 tags: [IoT, Biomedical, Cloud]
 stack: [ESP32, MAX301 optical sensor, AWS] # TODO: confirm exact sensor part number
-cover: ../../assets/projects/iot-health-monitor.png
-coverAlt: Placeholder graphic for the IoT health monitoring device.
+cover: ../../assets/projects/iot-health-monitor-cover.png
+coverAlt: Cover image for the IoT health monitoring device.
 ---
 
 A connected device for monitoring glucose, cholesterol and uric acid.

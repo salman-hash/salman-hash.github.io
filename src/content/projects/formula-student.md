@@ -6,8 +6,8 @@ org: NUST Automotive Group
 date: 2024-09-01 # TODO: confirm date
 tags: [Autonomous driving, Perception, Systems integration, CAN]
 stack: [CAN, LiDAR, Stereo vision, Path planning, Control]
-cover: ../../assets/projects/formula-student.png
-coverAlt: Placeholder graphic for the autonomous Formula Student vehicle project.
+cover: ../../assets/projects/formula-student-cover.png
+coverAlt: Cover image for the autonomous Formula Student vehicle project.
 featured: true
 ---
 

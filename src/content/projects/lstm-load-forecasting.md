@@ -5,8 +5,8 @@ role: Developer
 date: 2023-12-01 # TODO: confirm date
 tags: [Machine learning, Time series, Energy]
 stack: [Python, TensorFlow, LSTM]
-cover: ../../assets/projects/lstm-load-forecasting.png
-coverAlt: Placeholder graphic for the LSTM load forecasting project.
+cover: ../../assets/projects/lstm-load-forecasting-cover.png
+coverAlt: Cover image for the LSTM load forecasting project.
 ---
 
 A time-series forecasting model for electricity demand.

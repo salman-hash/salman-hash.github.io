@@ -5,8 +5,8 @@ role: Solo developer
 date: 2026-08-01 # TODO: confirm date
 tags: [ROS2, LiDAR, Navigation, Simulation]
 stack: [ROS2, Python, Gazebo, rclpy]
-cover: ../../assets/projects/ros2-lidar-avoidance.png
-coverAlt: Placeholder graphic for the ROS2 LiDAR obstacle avoidance project.
+cover: ../../assets/projects/ros2-lidar-avoidance-cover.png
+coverAlt: Cover image for the ROS2 LiDAR obstacle avoidance project.
 featured: true
 ---
 

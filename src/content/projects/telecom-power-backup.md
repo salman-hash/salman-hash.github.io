@@ -6,8 +6,8 @@ org: Cowlar
 date: 2025-01-01 # TODO: confirm date
 tags: [Embedded, Firmware, Power systems, CAN]
 stack: [CAN ISO-TP, UART, MQTT, HTTP, OTA]
-cover: ../../assets/projects/telecom-power-backup.png
-coverAlt: Placeholder graphic for the telecom server power backup project.
+cover: ../../assets/projects/telecom-power-backup-cover.png
+coverAlt: Cover image for the telecom server power backup project.
 ---
 
 A smart power-management and battery-backup system for telecom servers, built at Cowlar.

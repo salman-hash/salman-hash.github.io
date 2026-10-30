@@ -5,8 +5,8 @@ role: Solo developer
 date: 2025-09-01 # TODO: confirm date
 tags: [Computer vision, Cloud, MLOps]
 stack: [Python, FastAPI, DeepLabV3, PostgreSQL, SQLAlchemy, Azure VM]
-cover: ../../assets/projects/cloudseg.png
-coverAlt: Placeholder graphic for the CloudSeg image segmentation service.
+cover: ../../assets/projects/cloudseg-cover.png
+coverAlt: Cover image for the CloudSeg image segmentation service.
 ---
 
 CloudSeg is a RESTful machine-learning inference service for semantic image segmentation, deployed on an Azure virtual machine.

@@ -6,8 +6,8 @@ org: Cowlar
 date: 2024-12-01 # TODO: confirm date
 tags: [Industrial automation, Computer vision, Machine learning]
 stack: [Orange Pi, OpenCV, Festo actuators, Docker, Flask, WebSocket]
-cover: ../../assets/projects/fiber-sorting-machine.png
-coverAlt: Placeholder graphic for the optical fiber sorting machine.
+cover: ../../assets/projects/fiber-sorting-machine-cover.png
+coverAlt: Cover image for the optical fiber sorting machine.
 ---
 
 An automated optical fiber sorting machine built at Cowlar, running on an Orange Pi with Festo actuators.

@@ -6,8 +6,8 @@ org: Cowlar
 date: 2024-10-01 # TODO: confirm date
 tags: [Embedded, IoT, User interface]
 stack: [ESP32, LVGL, MQTT, Vue]
-cover: ../../assets/projects/kitchen-display-system.png
-coverAlt: Placeholder graphic for the restaurant kitchen display system.
+cover: ../../assets/projects/kitchen-display-system-cover.png
+coverAlt: Cover image for the restaurant kitchen display system.
 ---
 
 An ESP32-based kitchen display system for restaurants, built at Cowlar.

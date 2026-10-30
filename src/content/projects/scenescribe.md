@@ -6,8 +6,8 @@ org: NUST
 date: 2025-06-01 # TODO: confirm date
 tags: [Perception, Assistive tech, Vision-language models, Embedded]
 stack: [Python, VLMs, LLMs, Raspberry Pi, ESP32, CAD, 3D printing]
-cover: ../../assets/projects/scenescribe.png
-coverAlt: Placeholder graphic for the SceneScribe project.
+cover: ../../assets/projects/scenescribe-cover.png
+coverAlt: Cover image for the SceneScribe project.
 links:
   paper: https://doi.org/10.1109/IBCAST61650.2024.10877205
 featured: true

@@ -5,8 +5,8 @@ role: Developer
 date: 2024-01-01 # TODO: confirm date
 tags: [Computer vision, Machine learning, Tracking]
 stack: [Python, YOLOv8, ByteTrack, Supervision]
-cover: ../../assets/projects/traffic-monitoring.png
-coverAlt: Placeholder graphic for the traffic monitoring system.
+cover: ../../assets/projects/traffic-monitoring-cover.png
+coverAlt: Cover image for the traffic monitoring system.
 ---
 
 A computer-vision system for monitoring road traffic.

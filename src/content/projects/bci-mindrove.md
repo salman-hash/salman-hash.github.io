@@ -5,8 +5,8 @@ role: Developer
 date: 2024-03-01 # TODO: confirm date
 tags: [Signal processing, Biomedical, Machine learning]
 stack: [MindRove Arc, EEG, MATLAB, Python]
-cover: ../../assets/projects/bci-mindrove.png
-coverAlt: Placeholder graphic for the brain-computer interface project.
+cover: ../../assets/projects/bci-mindrove-cover.png
+coverAlt: Cover image for the brain-computer interface project.
 ---
 
 A brain-computer interface project using the MindRove Arc EEG headset.

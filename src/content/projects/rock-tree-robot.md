@@ -5,8 +5,8 @@ role: Designer & builder
 date: 2024-05-01 # TODO: confirm date
 tags: [Robotics, Path planning, Mechanical design]
 stack: [Line following, Path planning, Pick-and-place mechanism]
-cover: ../../assets/projects/rock-tree-robot.png
-coverAlt: Placeholder graphic for the rock-removing and tree-planting robot.
+cover: ../../assets/projects/rock-tree-robot-cover.png
+coverAlt: Cover image for the rock-removing and tree-planting robot.
 ---
 
 A competition robot that follows a line-marked course, removes rocks from given positions and plants trees in their place.

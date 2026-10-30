@@ -6,8 +6,8 @@ org: Cowlar
 date: 2025-03-01 # TODO: confirm date
 tags: [Industrial automation, Embedded, Motion control]
 stack: [Python, C, C++, Festo servos, Stepper motors, UART, Linux]
-cover: ../../assets/projects/fiber-termination-robot.png
-coverAlt: Placeholder graphic for the optical fiber termination line robot.
+cover: ../../assets/projects/fiber-termination-robot-cover.png
+coverAlt: Cover image for the optical fiber termination line robot.
 featured: true
 ---
 
