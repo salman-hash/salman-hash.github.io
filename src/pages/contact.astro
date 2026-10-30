@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { site } from '../data/site';
+
+const channels = [
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'LinkedIn', value: 'linkedin.com/in/salman-sadiq', href: site.socials.linkedin },
+  { label: 'GitHub', value: 'github.com/salman-hash', href: site.socials.github },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Salman Sadiq about working-student roles, thesis projects or robotics collaborations."
+>
+  <div class="max-w-3xl pt-12">
+    <SectionHeading title="Get in touch" level="h1">
+      <p class="mt-3 text-lg text-muted">
+        I'm based in {site.location} and currently <span class="text-fg">open to
+        working-student and thesis roles</span> in robotics, perception and embedded systems. Email is the fastest way
+        to reach me.
+      </p>
+    </SectionHeading>
+
+    <ul class="panel divide-y divide-line">
+      {
+        channels.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              {...(c.label === 'Email' ? {} : { target: '_blank', rel: 'me noopener noreferrer' })}
+              class="group flex flex-wrap items-center justify-between gap-2 p-4 transition-colors hover:bg-surface-2 sm:p-5"
+            >
+              <span class="w-24 font-semibold">{c.label}</span>
+              <span class="flex-1 break-all text-muted group-hover:text-accent-ink">
+                {c.value}
+                {c.label !== 'Email' && <span class="sr-only"> (opens in a new tab)</span>}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 text-sm text-muted">
+      You can also <a class="link" href={site.cv} download={site.cvFileName}>download my CV</a>.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LidarBot from '../components/LidarBot.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getProjects } from '../lib/content';
+import { Image } from 'astro:assets';
+import { experience, site } from '../data/site';
+import { profilePhoto } from '../lib/profile';
+
+const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="grid items-center gap-10 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:pt-24" aria-labelledby="hero-title">
+    <div>
+      {
+        profilePhoto && (
+          <Image
+            src={profilePhoto}
+            alt={`Portrait of ${site.name}`}
+            widths={[128, 256].filter((w) => w <= profilePhoto.width)}
+            sizes="(min-width: 640px) 128px, 112px"
+            loading="eager"
+            class="mb-7 size-28 rounded-full object-cover ring-2 ring-accent ring-offset-4 ring-offset-bg sm:size-32"
+          />
+        )
+      }
+      <p class="text-sm font-semibold text-accent-ink">Robotics & Embedded Systems Engineer</p>
+      <h1 id="hero-title" class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{site.name}</h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+        I build machines that sense, reason and move. Currently studying for an M.Sc. in Autonomous Systems at{' '}
+        <span class="text-fg">Hochschule Bonn-Rhein-Sieg</span>, with industry experience in embedded firmware,
+        industrial automation and technical customer support.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/projects" class="btn btn-primary">View projects</a>
+        <a href={site.cv} class="btn" download={site.cvFileName}>Download CV</a>
+      </div>
+    </div>
+    <LidarBot />
+  </section>
+
+  <section class="py-14" aria-labelledby="featured-title">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <h2 id="featured-title" class="text-2xl font-semibold tracking-tight">Featured projects</h2>
+      <a href="/projects" class="link text-sm">See all projects</a>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((p) => <li><ProjectCard project={p} /></li>)}
+    </ul>
+  </section>
+
+  <section class="py-14" aria-labelledby="exp-title">
+    <SectionHeading title="Experience" id="exp-title" />
+    <ol class="divide-y divide-line border-y border-line">
+      {
+        experience.map((e) => (
+          <li class="grid gap-1 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6">
+            <p class="label">{e.period}</p>
+            <div>
+              <h3 class="font-semibold">{e.role}</h3>
+              <p class="text-muted">{e.org}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-6 text-sm">
+      <a href="/about" class="link">Read my full background</a>
+    </p>
+  </section>
+</BaseLayout>

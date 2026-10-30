@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getProjects } from '../../lib/content';
+
+const projects = await getProjects();
+// Filter chips: topics shared by 2+ projects, most common first (one-off tags still show on cards).
+const counts = new Map<string, number>();
+projects.forEach((p) => p.data.tags.forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
+const topics = [...counts.entries()]
+  .filter(([, n]) => n >= 2)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([t]) => t);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Robotics, embedded and AI projects by Salman Sadiq: assistive VLM navigation, autonomous racing, industrial automation, ROS2 and cloud ML."
+>
+  <div class="pt-12">
+    <SectionHeading title="Projects" level="h1">
+      <p class="mt-3 max-w-2xl text-muted">
+        Things I've designed, built or led, from firmware and motion control to perception and cloud inference.
+      </p>
+    </SectionHeading>
+
+    <!-- Filter is progressive enhancement: hidden without JS (html:not(.js)), so all projects stay visible. -->
+    <div id="topic-filter" class="mb-8">
+      <p id="filter-label" class="label mb-3">Filter by topic</p>
+      <div class="flex flex-wrap gap-2" role="group" aria-labelledby="filter-label">
+        <button type="button" class="chip" data-topic="" aria-pressed="true">All</button>
+        {topics.map((t) => <button type="button" class="chip" data-topic={t} aria-pressed="false">{t}</button>)}
+      </div>
+      <p id="filter-status" class="sr-only" aria-live="polite"></p>
+    </div>
+
+    <ul id="project-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((p, i) => <li data-tags={p.data.tags.join('|')}><ProjectCard project={p} eager={i < 3} headingLevel="h2" /></li>)}
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(html:not(.js)) #topic-filter {
+    display: none;
+  }
+  .chip {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    background: var(--surface);
+    cursor: pointer;
+  }
+  .chip:hover {
+    color: var(--fg);
+    border-color: var(--accent);
+  }
+  .chip[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+</style>
+
+<script>
+  const filter = document.getElementById('topic-filter')!;
+  const status = document.getElementById('filter-status')!;
+  const items = [...document.querySelectorAll<HTMLLIElement>('#project-grid > li')];
+  const chips = [...filter.querySelectorAll<HTMLButtonElement>('.chip')];
+
+  const apply = (topic: string) => {
+    let shown = 0;
+    for (const li of items) {
+      const match = !topic || li.dataset.tags!.split('|').includes(topic);
+      li.hidden = !match;
+      if (match) shown++;
+    }
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.topic === topic)));
+    status.textContent = `${shown} project${shown === 1 ? '' : 's'} shown`;
+  };
+  chips.forEach((c) => c.addEventListener('click', () => apply(c.dataset.topic!)));
+</script>

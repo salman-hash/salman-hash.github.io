@@ -1,6 +1,22 @@
-node_modules
-dist
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# python venv with pinned node (see CLAUDE.md)
+.venv/
+
+# logs / env
+npm-debug.log*
+.env
+.env.*
+
+# OS / editor
 .DS_Store
-server/public
-vite.config.ts.*
-*.tar.gz
+.vscode/*
+!.vscode/extensions.json
+
+# claude
+CLAUDE.md

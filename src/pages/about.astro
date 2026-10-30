@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { Image } from 'astro:assets';
+import { awards, education, experience, languages, leadership, site, skills } from '../data/site';
+import { profilePhoto as photo } from '../lib/profile';
+---
+
+<BaseLayout
+  title="About"
+  description="About Salman Sadiq: M.Sc. Autonomous Systems at H-BRS, B.E. Mechatronics at NUST (Rector's Gold Medal), with experience at Motive, Cowlar and RADWI."
+>
+  <div class="pt-12">
+    <SectionHeading title="About me" level="h1" />
+
+    <div class:list={['grid gap-10', photo && 'lg:grid-cols-[1fr_18rem]']}>
+      <div class="max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+        <p>
+          I'm a <span class="text-fg">mechatronics engineer</span> now studying for an <span class="text-fg"
+            >M.Sc. in Autonomous Systems</span
+          > at Hochschule Bonn-Rhein-Sieg. I like working across
+          the whole stack of a robot: firmware on an ESP32, a CAN bus between subsystems, a ROS2 node turning LiDAR scans
+          into velocity commands, and a vision-language model that explains a scene to a person.
+        </p>
+        <p>
+          My final year project, <a class="link" href="/projects/scenescribe">SceneScribe</a>, an assistive navigation
+          system for visually impaired people, led to an IEEE IBCAST paper, a filed patent and NUST's Rector's Gold Medal.
+          Since then I've worked on industrial automation at Cowlar and supported connected telematics and AI systems at
+          Motive.
+        </p>
+        <div class="pt-4">
+          <a href={site.cv} class="btn btn-primary" download={site.cvFileName}>Download CV (PDF)</a>
+        </div>
+      </div>
+
+      {
+        photo && (
+          <Image
+            src={photo}
+            alt={`Portrait of ${site.name}`}
+            widths={[288, 432].filter((w) => w <= photo.width)}
+            sizes="(min-width: 1024px) 288px, 224px"
+            loading="eager"
+            class="order-first aspect-square w-56 rounded-2xl border border-line object-cover lg:order-none lg:w-full"
+          />
+        )
+      }
+    </div>
+
+    <section class="mt-16" aria-labelledby="exp">
+      <SectionHeading title="Experience" id="exp" />
+      <ol class="space-y-6">
+        {
+          experience.map((e) => (
+            <li class="panel p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="font-semibold">{e.role}</h3>
+                <p class="label">{e.period}</p>
+              </div>
+              <p class="mt-0.5 text-sm text-muted">{e.org}, {e.place}</p>
+              <ul class="prose-mc mt-3 text-sm">
+                {e.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="mt-16" aria-labelledby="edu">
+      <SectionHeading title="Education" id="edu" />
+      <ol class="grid gap-5 md:grid-cols-2">
+        {
+          education.map((e) => (
+            <li class="panel p-5">
+              <p class="label">{e.period}</p>
+              <h3 class="mt-1 font-semibold">{e.degree}</h3>
+              <p class="text-sm text-muted">{e.school}</p>
+              {e.notes.length > 0 && (
+                <ul class="prose-mc mt-3 text-sm">
+                  {e.notes.map((n) => <li>{n}</li>)}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="mt-16" aria-labelledby="skills">
+      <SectionHeading title="Skills" id="skills" />
+      <dl class="grid gap-5 sm:grid-cols-2">
+        {
+          skills.map((s) => (
+            <div class="panel p-5">
+              <dt class="font-semibold">{s.group}</dt>
+              <dd class="mt-3">
+                <ul class="flex flex-wrap gap-1.5">
+                  {s.items.map((i) => <li class="rounded-full bg-surface-2 px-2.5 py-0.5 text-sm text-muted">{i}</li>)}
+                </ul>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-5 text-sm text-muted"><span class="font-semibold text-fg">Languages:</span> {languages.join(', ')}</p>
+    </section>
+
+    <div class="mt-16 grid gap-10 md:grid-cols-2">
+      <section aria-labelledby="lead">
+        <SectionHeading title="Leadership" id="lead" />
+        <ul class="space-y-4">
+          {
+            leadership.map((l) => (
+              <li>
+                <h3 class="font-semibold">{l.title}</h3>
+                <p class="mt-1 text-sm text-muted">{l.detail}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <section aria-labelledby="awards">
+        <SectionHeading title="Recognition" id="awards" />
+        <ul class="prose-mc text-sm">
+          {awards.map((a) => <li>{a}</li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

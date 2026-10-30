@@ -1,0 +1,181 @@
+/* Only scan src/ for classes (keeps _legacy/ etc. out of the bundle). */
+@import 'tailwindcss' source('../');
+@import '@fontsource-variable/inter';
+
+/* ------------------------------------------------------------------
+   Design tokens. :root holds the dark palette; [data-theme="light"] (the
+   default set on <html>) overrides it.
+   --accent      → fills, borders, decorative (amber)
+   --accent-ink  → accent used as *text*; darker in light mode for AA
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+  --bg: #0b0d10;
+  --surface: #12161b;
+  --surface-2: #181d24;
+  --line: #262d36;
+  --fg: #e7e9ec;
+  --muted: #9ba5b0;
+  --accent: #f5a524;
+  --accent-ink: #f5b445;
+  --on-accent: #1a1204;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f0efeb;
+  --line: #e0ddd5;
+  --fg: #14171b;
+  --muted: #4f5761;
+  --accent: #f5a524;
+  --accent-ink: #8f4c00;
+  --on-accent: #1a1204;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    min-height: 100dvh;
+    background-color: var(--bg);
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Small secondary text: dates, field names, captions. */
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid var(--line);
+    transition: border-color 150ms, background-color 150ms, color 150ms;
+  }
+  .btn:hover {
+    border-color: var(--accent);
+  }
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+  .btn-primary:hover {
+    background: color-mix(in oklab, var(--accent) 85%, white);
+  }
+  .link {
+    color: var(--accent-ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent-ink) 40%, transparent);
+    text-underline-offset: 3px;
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Rendered Markdown and simple bullet lists */
+  .prose-mc {
+    color: var(--fg);
+    line-height: 1.75;
+  }
+  .prose-mc > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-mc h2 {
+    margin-top: 2em;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .prose-mc h3 {
+    margin-top: 1.8em;
+    font-weight: 600;
+  }
+  .prose-mc ul,
+  ul.prose-mc {
+    list-style: disc;
+    padding-left: 1.25em;
+  }
+  .prose-mc li::marker {
+    color: var(--accent-ink);
+  }
+  .prose-mc ul > li + li,
+  ul.prose-mc > li + li {
+    margin-top: 0.5em;
+  }
+  .prose-mc a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-mc code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.875em;
+    background: var(--surface-2);
+    border-radius: 0.25rem;
+    padding: 0.1em 0.35em;
+  }
+  .prose-mc strong {
+    font-weight: 600;
+  }
+}
+
+@utility sr-only-focusable {
+  position: absolute;
+  left: -9999px;
+  &:focus {
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+  }
+}
