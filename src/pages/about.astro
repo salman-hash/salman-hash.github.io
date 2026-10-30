@@ -13,7 +13,7 @@ import { profilePhoto as photo } from '../lib/profile';
   <div class="pt-12">
     <SectionHeading title="About me" level="h1" />
 
-    <div class="grid gap-10 lg:grid-cols-[1fr_18rem]">
+    <div class:list={['grid gap-10', photo && 'lg:grid-cols-[1fr_18rem]']}>
       <div class="max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
         <p>
           I'm a <span class="text-fg">mechatronics engineer</span> now studying for an <span class="text-fg"
@@ -28,28 +28,23 @@ import { profilePhoto as photo } from '../lib/profile';
           Since then I've worked on industrial automation at Cowlar and supported connected telematics and AI systems at
           Motive.
         </p>
+        <div class="pt-4">
+          <a href={site.cv} class="btn btn-primary" download={site.cvFileName}>Download CV (PDF)</a>
+        </div>
       </div>
 
-      <aside class="panel h-fit space-y-4 p-5" aria-label="Profile and CV">
-        {
-          photo && (
-            <Image
-              src={photo}
-              alt={`Portrait of ${site.name}`}
-              widths={[248, 432].filter((w) => w <= photo.width)}
-              sizes="(min-width: 1024px) 248px, 432px"
-              loading="eager"
-              class="mx-auto aspect-square w-full max-w-[432px] rounded-lg object-cover"
-            />
-          )
-        }
-        <h2 class="font-semibold">Curriculum vitae</h2>
-        <p class="text-sm text-muted">A summary of my education, experience and projects (PDF).</p>
-        <a href={site.cv} class="btn btn-primary w-full justify-center" download="Salman_Sadiq_CV.pdf">
-          Download CV (PDF)
-        </a>
-        <a href={site.cv} class="block text-center text-sm text-muted hover:text-fg">Open in browser</a>
-      </aside>
+      {
+        photo && (
+          <Image
+            src={photo}
+            alt={`Portrait of ${site.name}`}
+            widths={[288, 432].filter((w) => w <= photo.width)}
+            sizes="(min-width: 1024px) 288px, 224px"
+            loading="eager"
+            class="order-first aspect-square w-56 rounded-2xl border border-line object-cover lg:order-none lg:w-full"
+          />
+        )
+      }
     </div>
 
     <section class="mt-16" aria-labelledby="exp">

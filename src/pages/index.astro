@@ -19,10 +19,10 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
           <Image
             src={profilePhoto}
             alt={`Portrait of ${site.name}`}
-            widths={[96, 192].filter((w) => w <= profilePhoto.width)}
-            sizes="96px"
+            widths={[128, 256].filter((w) => w <= profilePhoto.width)}
+            sizes="(min-width: 640px) 128px, 112px"
             loading="eager"
-            class="mb-6 size-20 rounded-full object-cover ring-2 ring-accent ring-offset-4 ring-offset-bg sm:size-24"
+            class="mb-7 size-28 rounded-full object-cover ring-2 ring-accent ring-offset-4 ring-offset-bg sm:size-32"
           />
         )
       }
@@ -35,7 +35,7 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/projects" class="btn btn-primary">View projects</a>
-        <a href={site.cv} class="btn" download>Download CV</a>
+        <a href={site.cv} class="btn" download={site.cvFileName}>Download CV</a>
       </div>
     </div>
     <LidarBot />

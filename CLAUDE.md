@@ -38,7 +38,7 @@ src/
                            SectionHeading, LidarBot (hero canvas)
   pages/                   index, projects/index, projects/[...slug], research, about, contact, 404
   styles/global.css        Tailwind import + design tokens (light by default via <html data-theme>, dark toggle)
-public/                    cv.pdf, og-default.png, favicon.svg, robots.txt (served as-is)
+public/                    Salman_Sadiq_CV.pdf, og-default.png, favicon.svg, robots.txt (served as-is)
 _legacy/                   previous Vite/React site, kept for reference; not built
 ```
 
@@ -84,7 +84,7 @@ Create `src/content/publications/<slug>.md` with `title`, `authors` (list), `ven
 
 ## Conventions
 
-- **Facts come from `public/cv.pdf`.** When the CV changes, update `src/data/site.ts` and the affected Markdown. Dates still marked `# TODO: confirm date` are estimates.
+- **Facts come from `public/Salman_Sadiq_CV.pdf`.** Keep that file name: it's what visitors get when they download it. To update the CV, replace the file and keep the name. When the CV changes, update `src/data/site.ts` and the affected Markdown. Dates still marked `# TODO: confirm date` are estimates.
 - **Design tokens** live in `src/styles/global.css`. Use the Tailwind colours `bg`, `surface`, `surface-2`, `line`, `fg`, `muted`, `accent` (fills/borders) and `accent-ink` (accent *text*; darker in light mode for contrast). Don't hard-code hex colours in components.
 - **Fonts:** Inter only (self-hosted through Fontsource).
 - **Tone: clean and corporate, not "code-styled".** No monospace UI text, no `/`-prefixed tags or nav, no `//`, `~/ $`, `##` or terminal-style decoration, no background grid, and sentence-case labels and buttons. Monospace is only for real code inside Markdown.

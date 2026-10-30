@@ -1,5 +1,5 @@
 // Single source for personal facts used across pages.
-// Source of truth: public/cv.pdf — update both together.
+// Source of truth: public/Salman_Sadiq_CV.pdf — update both together.
 
 export const site = {
   name: 'Salman Sadiq',
@@ -13,7 +13,9 @@ export const site = {
     github: 'https://github.com/salman-hash',
     linkedin: 'https://www.linkedin.com/in/salman-sadiq',
   },
-  cv: '/cv.pdf',
+  /** File name is also the name visitors get when they download it. */
+  cv: '/Salman_Sadiq_CV.pdf',
+  cvFileName: 'Salman_Sadiq_CV.pdf',
 };
 
 export const nav = [
