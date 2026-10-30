@@ -5,7 +5,7 @@ role: Embedded Systems Intern
 org: RADWI Electronics
 date: 2023-09-01
 tags: [Embedded, IoT, Streaming]
-stack: [ESP32, I²C, MQTT, WebSocket, C/C++]
+stack: [ESP32, I²C, MQTT, WebSocket, C, C++]
 cover: ../../assets/projects/smart-wireless-intercom.png
 coverAlt: Placeholder graphic for the smart wireless intercom project.
 ---

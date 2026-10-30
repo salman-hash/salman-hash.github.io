@@ -14,6 +14,6 @@ A ROS2 node in Python that drives a mobile robot through a Gazebo world, reactin
 
 ## What I built
 
-- A **ROS2 controller node** that subscribes to the LiDAR `/scan` topic, detects obstacles in the scan and publishes velocity commands on `/cmd_vel`.
+- A **ROS2 controller node** that subscribes to the LiDAR scan topic, detects obstacles in the scan and publishes velocity commands back to the robot.
 - A **Gazebo simulation** setup for testing the controller.
 - A debugging workflow built on ROS2 CLI tools (`ros2 topic`, `ros2 node`, message inspection), the same way you would troubleshoot a real robot.

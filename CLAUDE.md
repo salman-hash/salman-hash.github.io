@@ -37,7 +37,7 @@ src/
   components/              Header, ThemeToggle, StatusBar, ProjectCard, Tag,
                            SectionHeading, LidarBot (hero canvas)
   pages/                   index, projects/index, projects/[...slug], research, about, contact, 404
-  styles/global.css        Tailwind import + design tokens (dark default, [data-theme=light])
+  styles/global.css        Tailwind import + design tokens (light by default via <html data-theme>, dark toggle)
 public/                    cv.pdf, og-default.png, favicon.svg, robots.txt (served as-is)
 _legacy/                   previous Vite/React site, kept for reference; not built
 ```
@@ -76,7 +76,7 @@ The topic filter on `/projects` is generated automatically from tags that two or
 
 ## Profile photo
 
-Put a square-ish photo at `src/assets/profile.jpg` (`.png`/`.webp` also work, at least 600×600). It appears on the About page, optimised to WebP automatically. If there's no file, the page just leaves it out.
+Put a square photo at `src/assets/profile.png` (`.jpg`/`.jpeg`/`.webp` also work, in any letter case). It appears as a small round photo in the home hero and at the top of the About sidebar, optimised to WebP automatically. If there's no file, both spots just leave it out. Larger sources (600×600+) look sharper on high-DPI screens.
 
 ## Add a publication
 

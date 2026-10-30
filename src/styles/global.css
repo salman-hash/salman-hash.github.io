@@ -3,7 +3,8 @@
 @import '@fontsource-variable/inter';
 
 /* ------------------------------------------------------------------
-   Design tokens. Dark is the default; [data-theme="light"] overrides.
+   Design tokens. :root holds the dark palette; [data-theme="light"] (the
+   default set on <html>) overrides it.
    --accent      → fills, borders, decorative (amber)
    --accent-ink  → accent used as *text*; darker in light mode for AA
    ------------------------------------------------------------------ */

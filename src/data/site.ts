@@ -35,7 +35,7 @@ export const education = [
     degree: 'B.E. Mechatronics Engineering',
     school: 'National University of Sciences and Technology (NUST), Pakistan',
     period: 'Nov 2021 – Oct 2025',
-    notes: ["Rector's Gold Medal — Best Final Year Project", 'CGPA 3.32 / 4.00'],
+    notes: ["Rector's Gold Medal — Best Final Year Project", 'CGPA 3.32 out of 4.00'],
   },
 ];
 
@@ -58,7 +58,7 @@ export const experience = [
     period: 'Jul 2024 – Jun 2025',
     points: [
       'Integrated industrial automation systems with client infrastructure — 35% fewer manual processes, 20% better operational efficiency.',
-      'Built hardware/software prototypes in C/C++ and Python, including custom device drivers, cutting iteration time by 30%.',
+      'Built hardware and software prototypes in C, C++ and Python, including custom device drivers, cutting iteration time by 30%.',
       'Debugged deployed automation systems over SSH on Linux at client sites.',
     ],
   },
@@ -69,14 +69,14 @@ export const experience = [
     period: 'Aug 2023 – Sep 2023',
     points: [
       'Developed an ESP32 smart intercom with audio and camera streaming over I²C and MQTT.',
-      'Wrote C/C++ firmware for device control, sensor acquisition and IoT connectivity.',
+      'Wrote C and C++ firmware for device control, sensor acquisition and IoT connectivity.',
     ],
   },
 ];
 
 export const skills = [
   { group: 'Programming', items: ['C', 'C++', 'Python', 'Bash', 'SQL'] },
-  { group: 'Robotics & AI', items: ['ROS2', 'Gazebo', 'OpenCV', 'Computer Vision', 'VLMs / LLMs', 'Sensor Integration'] },
+  { group: 'Robotics & AI', items: ['ROS2', 'Gazebo', 'OpenCV', 'Computer Vision', 'VLMs and LLMs', 'Sensor Integration'] },
   { group: 'Embedded & communication', items: ['ESP32', 'Raspberry Pi', 'RTOS', 'CAN', 'MQTT', 'UART', 'I²C'] },
   { group: 'Tools & cloud', items: ['Linux', 'Git', 'Docker', 'Azure', 'AWS', 'KiCad'] },
 ];

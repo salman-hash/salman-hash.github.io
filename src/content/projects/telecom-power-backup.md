@@ -5,7 +5,7 @@ role: Embedded Design Engineer
 org: Cowlar
 date: 2025-01-01 # TODO: confirm date
 tags: [Embedded, Firmware, Power systems, CAN]
-stack: [C/C++, CAN ISO-TP, UART, MQTT, HTTP, OTA]
+stack: [CAN ISO-TP, UART, MQTT, HTTP, OTA]
 cover: ../../assets/projects/telecom-power-backup.png
 coverAlt: Placeholder graphic for the telecom server power backup project.
 ---

@@ -11,6 +11,8 @@ export default defineConfig({
   // directly — no 301 to /about/ on every internal link.
   build: { format: 'file' },
   trailingSlash: 'never',
+  // Hide the dev-only Astro toolbar that shows at the bottom of `npm run dev`.
+  devToolbar: { enabled: false },
   integrations: [sitemap({ filter: (page) => !page.includes('/404') })],
   vite: {
     plugins: [tailwindcss()],
