@@ -2,7 +2,7 @@
 import { Image, getImage } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TopicTag from '../../components/TopicTag.astro';
+import Tag from '../../components/Tag.astro';
 import { formatMonth, getProjects } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -23,24 +23,25 @@ const { title, summary, role, org, date, tags, stack, cover, coverAlt, links } =
 const { Content } = await render(project);
 const og = await getImage({ src: cover, width: 1200, height: 630, fit: 'cover', format: 'png' });
 
-const linkLabels: Record<string, string> = { repo: 'source', demo: 'live demo', paper: 'paper', video: 'video' };
+const linkLabels: Record<string, string> = { repo: 'Source code', demo: 'Live demo', paper: 'Read the paper', video: 'Watch the video' };
 const linkList = Object.entries(links).filter(([, url]) => url) as [string, string][];
 ---
 
 <BaseLayout title={title} description={summary} image={og.src} imageAlt={coverAlt} type="article">
   <article class="pt-10">
-    <nav aria-label="Breadcrumb" class="font-mono text-sm text-muted">
-      <a href="/projects" class="hover:text-fg"><span aria-hidden="true">← </span>/projects</a>
+    <nav aria-label="Breadcrumb" class="text-sm font-medium text-muted">
+      <a href="/projects" class="hover:text-fg"><span aria-hidden="true">← </span>All projects</a>
     </nav>
 
     <header class="mt-6 max-w-3xl">
-      <p class="label">
-        <time datetime={date.toISOString()}>{formatMonth(date)}</time>{org && <span> · {org}</span>}
+      <p class="label flex flex-wrap gap-x-3">
+        <time datetime={date.toISOString()}>{formatMonth(date)}</time>
+        {org && <span>{org}</span>}
       </p>
       <h1 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
       <p class="mt-4 text-lg leading-relaxed text-muted">{summary}</p>
       <ul class="mt-5 flex flex-wrap gap-1.5" aria-label="Topics">
-        {tags.map((t) => <li><TopicTag topic={t} /></li>)}
+        {tags.map((t) => <li><Tag label={t} /></li>)}
       </ul>
     </header>
 
@@ -60,19 +61,19 @@ const linkList = Object.entries(links).filter(([, url]) => url) as [string, stri
       </div>
 
       <aside class="space-y-6 lg:order-none" aria-label="Project details">
-        <dl class="panel space-y-4 p-4 text-sm">
+        <dl class="panel space-y-5 p-5 text-sm">
           <div>
-            <dt class="label">role</dt>
+            <dt class="label">Role</dt>
             <dd class="mt-1">{role}</dd>
           </div>
           {
             stack.length > 0 && (
               <div>
-                <dt class="label">stack</dt>
+                <dt class="label">Tech stack</dt>
                 <dd class="mt-2">
                   <ul class="flex flex-wrap gap-1.5">
                     {stack.map((s) => (
-                      <li class="rounded border border-line px-1.5 py-0.5 font-mono text-xs">{s}</li>
+                      <li class="rounded-full bg-surface-2 px-2.5 py-0.5 text-xs font-medium">{s}</li>
                     ))}
                   </ul>
                 </dd>
@@ -82,9 +83,9 @@ const linkList = Object.entries(links).filter(([, url]) => url) as [string, stri
           {
             linkList.length > 0 && (
               <div>
-                <dt class="label">links</dt>
+                <dt class="label">Links</dt>
                 <dd class="mt-1">
-                  <ul class="space-y-1 font-mono text-sm">
+                  <ul class="space-y-1 text-sm">
                     {linkList.map(([k, url]) => (
                       <li>
                         <a class="link" href={url} rel="noopener">
@@ -105,7 +106,7 @@ const linkList = Object.entries(links).filter(([, url]) => url) as [string, stri
       next.id !== project.id && (
         <nav aria-label="Next project" class="mt-16 border-t border-line pt-6">
           <a href={`/projects/${next.id}`} class="group block">
-            <span class="label">next project</span>
+            <span class="label">Next project</span>
             <span class="mt-1 block text-xl font-semibold group-hover:text-accent-ink">
               {next.data.title} <span aria-hidden="true">→</span>
             </span>

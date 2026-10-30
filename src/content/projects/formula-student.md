@@ -4,7 +4,7 @@ summary: Led a 50-member team building the autonomy stack for a Formula Student 
 role: Autonomous Vehicles Team Lead
 org: NUST Automotive Group
 date: 2024-09-01 # TODO: confirm date
-tags: [/autonomy, /perception, /integration, /can]
+tags: [Autonomous driving, Perception, Systems integration, CAN]
 stack: [CAN, LiDAR, Stereo vision, Path planning, Control]
 cover: ../../assets/projects/formula-student.png
 coverAlt: Placeholder graphic for the autonomous Formula Student vehicle project.

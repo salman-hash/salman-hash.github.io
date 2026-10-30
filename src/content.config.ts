@@ -2,9 +2,6 @@ import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-/** Tags look like ROS topics: `/perception`, `/embedded`, `/cmd_vel`. */
-const topic = z.string().regex(/^\/[a-z0-9_]+(\/[a-z0-9_]+)*$/, 'Tags must look like ROS topics, e.g. "/perception"');
-
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: ({ image }) =>
@@ -16,7 +13,8 @@ const projects = defineCollection({
       org: z.string().optional(),
       /** Used for sorting (newest first). */
       date: z.coerce.date(),
-      tags: z.array(topic).min(1),
+      /** Short topic names shown as pills and used by the /projects filter, e.g. "Perception". */
+      tags: z.array(z.string().min(1)).min(1),
       stack: z.array(z.string()).default([]),
       cover: image(),
       coverAlt: z.string().min(1),

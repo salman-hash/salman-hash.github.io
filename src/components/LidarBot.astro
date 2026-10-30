@@ -4,20 +4,16 @@
 ---
 
 <figure class="panel relative overflow-hidden" aria-labelledby="lidar-caption">
-  <div class="flex items-center justify-between border-b border-line px-3 py-2 font-mono text-[0.7rem] text-muted">
-    <span><span aria-hidden="true" class="text-accent-ink">●</span> sim://lidar_avoid</span>
-    <span id="lidar-hud" aria-hidden="true">/cmd_vel v=0.00 ω=0.00</span>
-  </div>
-  <div class="relative h-64 sm:h-80 lg:h-[22rem]">
+  <div class="relative h-64 sm:h-80 lg:h-[24rem]">
     <canvas id="lidar-canvas" class="absolute inset-0 size-full touch-pan-y" aria-hidden="true"></canvas>
   </div>
   <figcaption id="lidar-caption" class="sr-only">
     Decorative animation: a small simulated robot sweeps LiDAR rays and steers around obstacles, including your
     mouse cursor.
   </figcaption>
-  <p class="pointer-events-none absolute bottom-2 left-3 font-mono text-[0.65rem] text-muted" aria-hidden="true">
-    <span class="pointer-coarse:hidden">move your cursor into its path</span>
-    <span class="hidden pointer-coarse:inline">tap to drop an obstacle</span>
+  <p class="pointer-events-none absolute bottom-3 left-4 text-xs text-muted" aria-hidden="true">
+    <span class="pointer-coarse:hidden">Move your cursor into the robot's path</span>
+    <span class="hidden pointer-coarse:inline">Tap to place an obstacle</span>
   </p>
 </figure>
 
@@ -26,7 +22,6 @@
   type Hit = { x: number; y: number; t: number };
 
   const canvas = document.getElementById('lidar-canvas') as HTMLCanvasElement | null;
-  const hud = document.getElementById('lidar-hud');
   const ctx = canvas?.getContext('2d');
 
   if (canvas && ctx) {
@@ -207,10 +202,6 @@
       ctx.arc(BOT_R * 0.35, 0, 2.6, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
-
-      if (hud && frame % 8 === 0) {
-        hud.textContent = `/cmd_vel v=${(bot.v / 100).toFixed(2)} ω=${bot.w.toFixed(2)}`;
-      }
     };
 
     const tick = (now: number) => {

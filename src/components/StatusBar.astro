@@ -4,21 +4,20 @@ import { site } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-line bg-surface font-mono text-xs text-muted">
-  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3 sm:px-6">
+<footer class="border-t border-line bg-surface text-sm text-muted">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4 sm:px-6">
     <p class="flex items-center gap-2">
       <span class="relative flex size-2" aria-hidden="true">
         <span class="absolute inline-flex size-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping"></span>
         <span class="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
       </span>
-      <span class="text-fg">ONLINE</span>
+      <span class="text-fg">{site.availability}</span>
     </p>
-    <p><span aria-hidden="true">⌖ </span><span class="sr-only">Location: </span>{site.location}</p>
-    <p><span aria-hidden="true">◆ </span><span class="sr-only">Availability: </span>{site.availability}</p>
-    <ul class="flex gap-4 sm:ml-auto">
-      <li><a class="hover:text-fg" href={site.socials.github} rel="me">github</a></li>
-      <li><a class="hover:text-fg" href={site.socials.linkedin} rel="me">linkedin</a></li>
-      <li><a class="hover:text-fg" href={`mailto:${site.email}`}>email</a></li>
+    <p>Based in {site.location}</p>
+    <ul class="flex gap-5 sm:ml-auto">
+      <li><a class="hover:text-fg" href={site.socials.github} rel="me">GitHub</a></li>
+      <li><a class="hover:text-fg" href={site.socials.linkedin} rel="me">LinkedIn</a></li>
+      <li><a class="hover:text-fg" href={`mailto:${site.email}`}>Email</a></li>
     </ul>
     <p class="w-full sm:w-auto">© {year} {site.name}</p>
   </div>

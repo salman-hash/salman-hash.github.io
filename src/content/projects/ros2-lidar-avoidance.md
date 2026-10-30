@@ -1,9 +1,9 @@
 ---
 title: ROS2 LiDAR Obstacle Avoidance
-summary: A reactive obstacle-avoidance controller for a simulated mobile robot. It reads /scan from a LiDAR and publishes /cmd_vel, written in Python on ROS2 and Gazebo.
+summary: A reactive obstacle-avoidance controller for a simulated mobile robot. It turns LiDAR scans into velocity commands, written in Python with ROS2 and Gazebo.
 role: Solo developer
 date: 2026-08-01 # TODO: confirm date
-tags: [/scan, /cmd_vel, /ros2, /navigation]
+tags: [ROS2, LiDAR, Navigation, Simulation]
 stack: [ROS2, Python, Gazebo, rclpy]
 cover: ../../assets/projects/ros2-lidar-avoidance.png
 coverAlt: Placeholder graphic for the ROS2 LiDAR obstacle avoidance project.

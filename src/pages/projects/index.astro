@@ -16,35 +16,38 @@ const topics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCo
   description="Robotics, embedded and AI projects by Salman Sadiq: assistive VLM navigation, autonomous racing, industrial automation, ROS2 and cloud ML."
 >
   <div class="pt-12">
-    <SectionHeading kicker="ros2 topic list" title="Projects" level="h1">
+    <SectionHeading title="Projects" level="h1">
       <p class="mt-3 max-w-2xl text-muted">
         Things I've designed, built or led, from firmware and motion control to perception and cloud inference.
       </p>
     </SectionHeading>
 
-    <!-- Filter is progressive enhancement: hidden until JS runs, all projects visible without it. -->
-    <div id="topic-filter" class="mb-8" hidden>
-      <p id="filter-label" class="label mb-2">filter by topic</p>
+    <!-- Filter is progressive enhancement: hidden without JS (html:not(.js)), so all projects stay visible. -->
+    <div id="topic-filter" class="mb-8">
+      <p id="filter-label" class="label mb-3">Filter by topic</p>
       <div class="flex flex-wrap gap-2" role="group" aria-labelledby="filter-label">
-        <button type="button" class="chip" data-topic="" aria-pressed="true">/all</button>
+        <button type="button" class="chip" data-topic="" aria-pressed="true">All</button>
         {topics.map((t) => <button type="button" class="chip" data-topic={t} aria-pressed="false">{t}</button>)}
       </div>
       <p id="filter-status" class="sr-only" aria-live="polite"></p>
     </div>
 
-    <ul id="project-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((p, i) => <li data-tags={p.data.tags.join(' ')}><ProjectCard project={p} eager={i < 3} headingLevel="h2" /></li>)}
+    <ul id="project-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((p, i) => <li data-tags={p.data.tags.join('|')}><ProjectCard project={p} eager={i < 3} headingLevel="h2" /></li>)}
     </ul>
   </div>
 </BaseLayout>
 
 <style>
+  :global(html:not(.js)) #topic-filter {
+    display: none;
+  }
   .chip {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.375rem 0.875rem;
     border: 1px solid var(--line);
-    border-radius: 0.3rem;
+    border-radius: 999px;
     color: var(--muted);
     background: var(--surface);
     cursor: pointer;
@@ -65,12 +68,11 @@ const topics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCo
   const status = document.getElementById('filter-status')!;
   const items = [...document.querySelectorAll<HTMLLIElement>('#project-grid > li')];
   const chips = [...filter.querySelectorAll<HTMLButtonElement>('.chip')];
-  filter.hidden = false;
 
   const apply = (topic: string) => {
     let shown = 0;
     for (const li of items) {
-      const match = !topic || li.dataset.tags!.split(' ').includes(topic);
+      const match = !topic || li.dataset.tags!.split('|').includes(topic);
       li.hidden = !match;
       if (match) shown++;
     }

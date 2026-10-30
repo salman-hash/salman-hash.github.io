@@ -4,7 +4,7 @@ summary: Multi-axis motion control, firmware and a custom UART driver for a prod
 role: Embedded Design Engineer
 org: Cowlar
 date: 2025-03-01 # TODO: confirm date
-tags: [/automation, /embedded, /motion_control]
+tags: [Industrial automation, Embedded, Motion control]
 stack: [Python, C/C++, Festo servos, Stepper motors, UART, Linux]
 cover: ../../assets/projects/fiber-termination-robot.png
 coverAlt: Placeholder graphic for the optical fiber termination line robot.

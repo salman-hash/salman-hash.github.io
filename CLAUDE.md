@@ -34,7 +34,7 @@ src/
   data/site.ts             personal facts: contact, experience, education, skills, awards
   lib/content.ts           getProjects(), getPublications(), formatMonth(), cleanPath()
   layouts/BaseLayout.astro <head>/SEO/OG tags, header, footer status bar, theme init
-  components/              Header, ThemeToggle, StatusBar, ProjectCard, TopicTag,
+  components/              Header, ThemeToggle, StatusBar, ProjectCard, Tag,
                            SectionHeading, LidarBot (hero canvas)
   pages/                   index, projects/index, projects/[...slug], research, about, contact, 404
   styles/global.css        Tailwind import + design tokens (dark default, [data-theme=light])
@@ -54,7 +54,7 @@ summary: One or two sentences, max 200 chars. Used on cards and as the meta desc
 role: Solo developer
 org: H-BRS                      # optional
 date: 2026-11-01                # sorts newest first
-tags: [/perception, /ros2]      # ROS-topic style: lowercase, start with "/", [a-z0-9_]
+tags: [Perception, ROS2]        # plain words, shown as pills + used by the filter
 stack: [ROS2, Python, Gazebo]
 cover: ../../assets/projects/my-robot.png
 coverAlt: Describe what the image shows (required).
@@ -67,10 +67,10 @@ featured: true                  # shows on the home page (top 3 by date)
 draft: false                    # true = hidden from production builds
 ---
 
-Markdown body. Use `## Headings`; bullets render with › markers.
+Markdown body. Use `## Headings` and normal bullet lists.
 ```
 
-3. Run `npm run build`. Schema errors (bad tag format, missing alt text, etc.) fail the build with a clear message.
+3. Run `npm run build`. Schema errors (missing alt text, summary over 200 chars, etc.) fail the build with a clear message.
 
 The topic filter on `/projects` is generated automatically from all tags.
 
@@ -82,7 +82,8 @@ Create `src/content/publications/<slug>.md` with `title`, `authors` (list), `ven
 
 - **Facts come from `public/cv.pdf`.** When the CV changes, update `src/data/site.ts` and the affected Markdown. Dates still marked `# TODO: confirm date` are estimates.
 - **Design tokens** live in `src/styles/global.css`. Use the Tailwind colours `bg`, `surface`, `surface-2`, `line`, `fg`, `muted`, `accent` (fills/borders) and `accent-ink` (accent *text*; darker in light mode for contrast). Don't hard-code hex colours in components.
-- **Fonts:** Inter (body, `font-sans`) and JetBrains Mono (labels/tags, `font-mono`, `.label`), both self-hosted through Fontsource.
+- **Fonts:** Inter only (self-hosted through Fontsource).
+- **Tone: clean and corporate, not "code-styled".** No monospace UI text, no `/`-prefixed tags or nav, no `//`, `~/ $`, `##` or terminal-style decoration, no background grid, and sentence-case labels and buttons. Monospace is only for real code inside Markdown.
 - **No client-side framework.** Interactivity is small inline `<script>`s (theme toggle, project filter, hero canvas). Keep it that way to protect the Lighthouse score (currently 100 in all categories on mobile).
 - **URLs have no trailing slash:** `build.format: 'file'` emits `about.html`, served at `/about`. Internal links are written as `/about` and `/projects/<slug>`.
 - **Accessibility:** every image needs alt text, keep heading order sequential, keep the visible focus rings, and respect `prefers-reduced-motion` in any animation.

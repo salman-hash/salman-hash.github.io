@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import TopicTag from '../components/TopicTag.astro';
 import { awards, education, experience, languages, leadership, site, skills } from '../data/site';
 ---
 
@@ -10,7 +9,7 @@ import { awards, education, experience, languages, leadership, site, skills } fr
   description="About Salman Sadiq: M.Sc. Autonomous Systems at H-BRS, B.E. Mechatronics at NUST (Rector's Gold Medal), with experience at Motive, Cowlar and RADWI."
 >
   <div class="pt-12">
-    <SectionHeading kicker="about" title="About me" level="h1" />
+    <SectionHeading title="About me" level="h1" />
 
     <div class="grid gap-10 lg:grid-cols-[1fr_18rem]">
       <div class="max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
@@ -30,28 +29,26 @@ import { awards, education, experience, languages, leadership, site, skills } fr
       </div>
 
       <aside class="panel h-fit space-y-4 p-5" aria-label="Download CV">
-        <p class="label">curriculum vitae</p>
+        <h2 class="font-semibold">Curriculum vitae</h2>
         <p class="text-sm text-muted">One-page summary of my education, experience and projects (PDF).</p>
         <a href={site.cv} class="btn btn-primary w-full justify-center" download="Salman_Sadiq_CV.pdf">
-          download cv.pdf <span aria-hidden="true">↓</span>
+          Download CV (PDF)
         </a>
-        <a href={site.cv} class="block text-center font-mono text-xs text-muted hover:text-fg">view in browser</a>
+        <a href={site.cv} class="block text-center text-sm text-muted hover:text-fg">Open in browser</a>
       </aside>
     </div>
 
     <section class="mt-16" aria-labelledby="exp">
-      <SectionHeading kicker="experience" title="Experience" id="exp" />
+      <SectionHeading title="Experience" id="exp" />
       <ol class="space-y-6">
         {
           experience.map((e) => (
             <li class="panel p-5">
               <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 class="font-semibold">
-                  {e.role} <span class="font-normal text-muted">· {e.org}</span>
-                </h3>
+                <h3 class="font-semibold">{e.role}</h3>
                 <p class="label">{e.period}</p>
               </div>
-              <p class="mt-0.5 text-sm text-muted">{e.place}</p>
+              <p class="mt-0.5 text-sm text-muted">{e.org}, {e.place}</p>
               <ul class="prose-mc mt-3 text-sm">
                 {e.points.map((p) => <li>{p}</li>)}
               </ul>
@@ -62,7 +59,7 @@ import { awards, education, experience, languages, leadership, site, skills } fr
     </section>
 
     <section class="mt-16" aria-labelledby="edu">
-      <SectionHeading kicker="education" title="Education" id="edu" />
+      <SectionHeading title="Education" id="edu" />
       <ol class="grid gap-5 md:grid-cols-2">
         {
           education.map((e) => (
@@ -82,27 +79,27 @@ import { awards, education, experience, languages, leadership, site, skills } fr
     </section>
 
     <section class="mt-16" aria-labelledby="skills">
-      <SectionHeading kicker="skills" title="Skills" id="skills" />
+      <SectionHeading title="Skills" id="skills" />
       <dl class="grid gap-5 sm:grid-cols-2">
         {
           skills.map((s) => (
             <div class="panel p-5">
-              <dt><TopicTag topic={s.group} /></dt>
+              <dt class="font-semibold">{s.group}</dt>
               <dd class="mt-3">
-                <ul class="flex flex-wrap gap-x-3 gap-y-1 text-sm">
-                  {s.items.map((i) => <li>{i}</li>)}
+                <ul class="flex flex-wrap gap-1.5">
+                  {s.items.map((i) => <li class="rounded-full bg-surface-2 px-2.5 py-0.5 text-sm text-muted">{i}</li>)}
                 </ul>
               </dd>
             </div>
           ))
         }
       </dl>
-      <p class="mt-4 text-sm text-muted"><span class="label">languages</span> · {languages.join(' · ')}</p>
+      <p class="mt-5 text-sm text-muted"><span class="font-semibold text-fg">Languages:</span> {languages.join(', ')}</p>
     </section>
 
     <div class="mt-16 grid gap-10 md:grid-cols-2">
       <section aria-labelledby="lead">
-        <SectionHeading kicker="leadership" title="Leadership" id="lead" />
+        <SectionHeading title="Leadership" id="lead" />
         <ul class="space-y-4">
           {
             leadership.map((l) => (
@@ -115,7 +112,7 @@ import { awards, education, experience, languages, leadership, site, skills } fr
         </ul>
       </section>
       <section aria-labelledby="awards">
-        <SectionHeading kicker="awards" title="Recognition" id="awards" />
+        <SectionHeading title="Recognition" id="awards" />
         <ul class="prose-mc text-sm">
           {awards.map((a) => <li>{a}</li>)}
         </ul>

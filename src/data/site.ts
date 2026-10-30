@@ -3,12 +3,11 @@
 
 export const site = {
   name: 'Salman Sadiq',
-  title: 'Salman Sadiq — Robotics & Embedded Systems',
+  title: 'Salman Sadiq | Robotics & Embedded Systems Engineer',
   description:
     'Salman Sadiq — M.Sc. Autonomous Systems student at H-BRS. Robotics, embedded systems, ROS2 and vision-language models for assistive and autonomous machines.',
-  tagline: 'Robotics & embedded engineer building machines that sense, reason and move.',
-  location: 'Bonn, DE',
-  availability: 'Open to working-student & thesis roles',
+  location: 'Bonn, Germany',
+  availability: 'Open to working-student and thesis roles',
   email: 'salman_sadiq@outlook.com',
   socials: {
     github: 'https://github.com/salman-hash',
@@ -18,11 +17,11 @@ export const site = {
 };
 
 export const nav = [
-  { href: '/', label: 'home' },
-  { href: '/projects', label: 'projects' },
-  { href: '/research', label: 'research' },
-  { href: '/about', label: 'about' },
-  { href: '/contact', label: 'contact' },
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/research', label: 'Research' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export const education = [
@@ -76,10 +75,10 @@ export const experience = [
 ];
 
 export const skills = [
-  { group: '/lang', items: ['C', 'C++', 'Python', 'Bash', 'SQL'] },
-  { group: '/robotics', items: ['ROS2', 'Gazebo', 'OpenCV', 'Computer Vision', 'VLMs / LLMs', 'Sensor Integration'] },
-  { group: '/embedded', items: ['ESP32', 'Raspberry Pi', 'RTOS', 'CAN', 'MQTT', 'UART', 'I²C'] },
-  { group: '/tools', items: ['Linux', 'Git', 'Docker', 'Azure', 'AWS', 'KiCad'] },
+  { group: 'Programming', items: ['C', 'C++', 'Python', 'Bash', 'SQL'] },
+  { group: 'Robotics & AI', items: ['ROS2', 'Gazebo', 'OpenCV', 'Computer Vision', 'VLMs / LLMs', 'Sensor Integration'] },
+  { group: 'Embedded & communication', items: ['ESP32', 'Raspberry Pi', 'RTOS', 'CAN', 'MQTT', 'UART', 'I²C'] },
+  { group: 'Tools & cloud', items: ['Linux', 'Git', 'Docker', 'Azure', 'AWS', 'KiCad'] },
 ];
 
 export const leadership = [
